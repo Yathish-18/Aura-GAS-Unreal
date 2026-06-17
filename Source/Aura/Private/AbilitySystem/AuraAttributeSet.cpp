@@ -7,7 +7,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(100);
+	InitHealth(50);
 	InitMaxHealth(100);
 	InitMana(50);
 	InitMaxMana(50);
@@ -43,5 +43,4 @@ void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) 
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet,MaxMana, OldMaxMana);
 }
-
 
