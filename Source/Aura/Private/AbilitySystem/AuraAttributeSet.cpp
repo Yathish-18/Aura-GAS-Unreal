@@ -11,8 +11,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(50);	
-	InitMana(10);
+	
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -168,7 +167,7 @@ void UAuraAttributeSet::OnRep_CriticalHitResistance(const FGameplayAttributeData
 }
 
 void UAuraAttributeSet::OnRep_HealthGeneration(const FGameplayAttributeData& OldHealthGeneration) const
-{
+{	
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet,HealthGeneration, OldHealthGeneration);	
 }
 
