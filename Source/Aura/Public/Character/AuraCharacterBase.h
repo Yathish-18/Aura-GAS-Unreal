@@ -11,6 +11,7 @@
 class UGameplayEffect;
 class UAttributeSet;
 class UAbilitySystemComponent;
+class UGameplayAbility;
 
 UCLASS()
 class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface 
@@ -27,6 +28,11 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category= "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
+
+	UPROPERTY(EditAnywhere, Category= "Combat")
+	FName WeaponTipSocketName;
+
+	virtual FVector GetCombatSocketLocation() override;
 	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
@@ -47,5 +53,12 @@ protected:
 
 	auto ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const -> void;
 	void InitializeDefaultAttributes() const;
+
+	void AddCharacterAbilities() const;
+
+private:
+
+	UPROPERTY(EditAnywhere, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 	
 };
