@@ -136,7 +136,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectMo
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(),0.f,GetMaxHealth()));
-		UE_LOG(LogTemp,Warning,TEXT("Change Health On %s, Health: %f"),*Props.TargetAvatarActor->GetName(),GetHealth());
 	}
 
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
@@ -180,6 +179,11 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float D
 	if (Props.SourceCharacter != Props.TargetCharacter)
 	{
 		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.SourceCharacter->Controller))
+		{
+			PC->ShowDamageNumber(Damage,Props.TargetCharacter, bBlockedHit, bCriticalHit);
+			return;
+		}
+		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.TargetCharacter->Controller))
 		{
 			PC->ShowDamageNumber(Damage,Props.TargetCharacter, bBlockedHit, bCriticalHit);
 		}

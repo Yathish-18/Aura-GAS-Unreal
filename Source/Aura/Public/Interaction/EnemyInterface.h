@@ -25,4 +25,11 @@ public:
 
 	virtual void HightLightActor() = 0;
 	virtual void UnHightLightActor() = 0;
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void SetCombatTarget(AActor* InCombatTarget);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	AActor* GetCombatTarget() const;
+	
 };
